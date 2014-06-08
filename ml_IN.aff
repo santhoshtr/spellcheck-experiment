@@ -1,0 +1,73 @@
+SET    UTF-8
+# Minimum length of words in compound words. 
+COMPOUNDMIN 1
+	
+# Words signed with COMPOUNDFLAG may be in compound words
+# (except when word shorter than COMPOUNDMIN).
+# Affixes with COMPOUNDFLAG also permits compounding of affixed words.
+COMPOUNDFLAG c
+
+# Suffixes signed with ONLYINCOMPOUND flag may be only inside of compounds
+# (Fuge-elements in German, fogemorphemes in Swedish). 
+# ONLYINCOMPOUND #flag works also with words (see tests/onlyincompound.*).
+ONLYINCOMPOUND x
+
+COMPOUNDPERMITFLAG P
+
+# Mak end of compound
+COMPOUNDEND e
+
+REP    9
+REP    മ ം
+REP    ം    മ
+REP    ൻ‍റ    ന്റ
+REP    എൻറെ    എന്റെ
+REP    ററ    റ്റ
+REP    ൌ   ൗ
+REP    ൗ     ൌ
+REP    ദ    ധ
+REP    ധ    ദ
+
+# Duplication of k if word starts with ka
+PFX    2    Y	3
+PFX    2    ക	ക്ക/P	.
+PFX    2    പ	പ്പ/P	.
+PFX    2    ത	ത്ത/P	.
+
+PFX    1    Y    1
+PFX    1    അ        0/Px
+
+SFX    a    Y   1
+SFX    a    ഥ   ഥാ/P
+	
+SFX    p    Y    6
+SFX    p    ി    കള്‍/L
+SFX    p    ല    ലകള്‍
+SFX    p    ഥ    ഥകള്‍/L
+SFX    p    ്    ുകള്‍
+SFX    p    ം    ങ്ങള്‍/L
+SFX    p    ം    0/Px
+
+SFX    L    Y    9
+SFX    L    ള്‍    ളിലെ
+SFX    L    ള്‍    ളില്‍/L
+SFX    L    ള്‍    ളുടെ
+SFX    L    ള്‍    ള്‍ക്ക്
+SFX    L    ള്‍    ള/Px
+SFX    L    ള്‍    ളിലേയ്ക്ക്/s
+SFX    L    ള്‍    ളിലേത്/s
+SFX    L    ള്‍    ളില്ല
+SFX    L    ള്‍    ളുണ്ടു്
+
+SFX    m    Y    7
+SFX    m    ം    ത്തെ
+SFX    m    ം    ത്തു
+SFX    m    ം    ത്ത്/s
+SFX    m    ം    ത്തിലെ
+SFX    m    ം    ത്തിലേയ്ക്ക്/s
+SFX    m    ം    ത്തെയും
+SFX    m    ം    ത്തേയും
+
+# Samvruthokaram
+SFX    s    Y    1
+SFX    s   ്   ു്
